@@ -1,0 +1,34 @@
+#container{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10% 0 10%;
+}
+
+.blockofprofile img{
+    width: 40%;
+    height: auto;
+    margin: 3%;
+    border-radius: 5px;
+}
+
+.blockofprofile img:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.blockofprofile{
+    background-color: #e2e3e5;
+    border-radius: 50px;
+    width: 90%;
+    height: 400px;
+    overflow: auto;
+    float: right;
+}
+.same{
+    margin: 100px;
+}
+input{
+    margin: 5px;
+    position: absolute;
+    right: 150px;
+}
