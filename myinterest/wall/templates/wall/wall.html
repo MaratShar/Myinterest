@@ -7,20 +7,20 @@
 
 {% block main %}
     {% for img in images %}
-        <div class="card w-25 mx-3">
+        <div class="card">
             <img src="{{img.image.url}}" alt="something went wrong" class="card-img-top">
             <div class="card-body">
                 <p class="card-text">{{img.discription}}</p>
                 {% if user.is_authenticated %}
                     {% if img in likes %}
-                        {#<a href="{% url 'unlike' img.id %}"><img src="{% static 'wall/img/chat-heart-fill.svg' %}" alt="chat-heart"></a>#}
-                        <button class = "unlike" data-image = "{{img.id}}" onclick = "like(this)">
-                            Снять лайк
+                        {#<a href="{% url 'unlike' img.id %}"><img src="{% static 'wall/img/favorite.svg' %}" alt="chat-heart"></a>#}
+                        <button class = "unlike btn-img" data-image = "{{img.id}}" onclick = "like(this)">
+                            <img src="{% static 'wall/img/unfavotite.svg' %}" alt="unfavorite">
                         </button>
                     {% else %}
                         {#<a href="{% url 'like' img.id %}"><img src="{% static 'wall/img/chat-heart.svg' %}" alt="chat-heart"></a>#}
-                        <button class = "like" data-image = "{{img.id}}" onclick = "like(this)">
-                            Поставить лайк
+                        <button class = "like btn-img" data-image = "{{img.id}}" onclick = "like(this)">
+                            <img src="{% static 'wall/img/favorite.svg' %}" alt="favorite">
                         </button>
                     {% endif %}
                     <span class = "count-of-likes">{{img.likes}}</span>
@@ -37,7 +37,7 @@
         if (button.classList.contains("like")){
             let response = await fetch("http://127.0.0.1:8000/wall/like/" + button.dataset.image);
             console.log(await response.json());
-            button.innerHTML = "Снять лайк";
+            button.innerHTML = '<img src="{% static "wall/img/favorite.svg" %}" alt="favorite">';
             button.classList.remove("like");
             button.classList.add("unlike");
             let span = document.querySelector(".count-of-likes");
@@ -47,7 +47,7 @@
         else if(button.classList.contains("unlike")){
             let response = await fetch("http://127.0.0.1:8000/wall/unlike/" + button.dataset.image);
             console.log(await response.json());
-            button.innerHTML = "Поставить лайк";
+            button.innerHTML = '<img src="{% static "wall/img/unfavorite.svg" %}" alt="unfavorite">';
             button.classList.remove("unlike");
             button.classList.add("like");
             let span = document.querySelector(".count-of-likes");
